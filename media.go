@@ -3,6 +3,7 @@ package anaconda
 import (
 	"net/url"
 	"strconv"
+	"strings"
 )
 
 type Media struct {
@@ -36,10 +37,13 @@ type VideoMedia struct {
 	Video            Video  `json:"video"`
 }
 
-func (a TwitterApi) UploadMedia(base64String string, mediaType string) (media Media, err error) {
+func (a TwitterApi) UploadMedia(base64String string, mediaType string, ownerIds []string) (media Media, err error) {
 	v := url.Values{}
 	v.Set("media_data", base64String)
 	v.Set("media_category", mediaType)
+	if len(ownerIds) > 0 {
+		v.Set("owner_ids", strings.Join(ownerIds, ","))
+	}
 	var mediaResponse Media
 
 	response_ch := make(chan response)
