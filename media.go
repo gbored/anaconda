@@ -37,6 +37,8 @@ type VideoMedia struct {
 	Video            Video  `json:"video"`
 }
 
+// TODO: WTF IS THIS IN MEMORY CONVERSION OF BASE64 ?
+// Implement streaming
 func (a TwitterApi) UploadMedia(base64String string, mediaType string, ownerIds []string) (media Media, err error) {
 	v := url.Values{}
 	v.Set("media_data", base64String)
