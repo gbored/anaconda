@@ -42,7 +42,7 @@ func (a TwitterApi) UploadMedia(base64String string, mediaType string, ownerIds 
 	v.Set("media_data", base64String)
 	v.Set("media_category", mediaType)
 	if len(ownerIds) > 0 {
-		v.Set("owner_ids", strings.Join(ownerIds, ","))
+		v.Set("additional_owners", strings.Join(ownerIds, ","))
 	}
 	var mediaResponse Media
 
